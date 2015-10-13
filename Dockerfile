@@ -12,9 +12,8 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget mercurial libssl-dev libsqlite3-dev openssl
+  apt-get install -y build-essential libncurses-dev libreadline-dev && \
+  apt-get install -y git wget mercurial libssl-dev libsqlite3-dev openssl
 
 # Add files.
 
