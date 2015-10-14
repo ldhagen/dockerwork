@@ -12,10 +12,11 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential libncurses-dev libreadline-dev && \
+  apt-get install -y build-essential libncurses-dev libreadline-dev sqlite3 && \
   apt-get install -y git wget mercurial libssl-dev libsqlite3-dev openssl
 
 # Add files.
+ADD ./convert.py /root/convert.py
 
 # Set environment variables.
 ENV HOME /root
@@ -37,7 +38,8 @@ RUN set -x \
     && pip install pysqlite \
     && rm -rf /root/cpython/.hg \
     && cd /root/ \
-    && wget http://www.tdcj.state.tx.us/documents/High_Value_Data_Sets.xlsx 
+    && wget http://www.tdcj.state.tx.us/documents/High_Value_Data_Sets.xlsx \
+    && python convert.py 
 
 # Define default command.
 CMD ["bash"]
