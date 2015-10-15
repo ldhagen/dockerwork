@@ -14,7 +14,9 @@ c1 = conn.cursor()
 c1.execute('create table inmates ("SID Number" ,"TDCJ Number" ,"Name" ,"Current Facility" ,"Gender" ,"Race" ,"DOB" ,"Projected Release" ,"Maximum Sentence Date" ,"Parole Eligibility Date" ,"Case Number" ,"County" ,"Offense Code" ,"Offense" ,"Sentence Date" ,"Offense Date" ,"Sentence Years" ,"Last Parole Decision" ,"Next Parole Review Date" ,"Parole Review Status")')
 
 count = 0
-for x in iter_rows(ws):
+row_iter = iter_rows(ws)
+row_iter.next() #skip header row
+for x in row_iter:
     c1.execute('insert into inmates ("SID Number" ,"TDCJ Number" ,"Name" ,"Current Facility" ,"Gender" ,"Race" ,"DOB" ,"Projected Release" ,"Maximum Sentence Date" ,"Parole Eligibility Date" ,"Case Number" ,"County" ,"Offense Code" ,"Offense" ,"Sentence Date" ,"Offense Date" ,"Sentence Years" ,"Last Parole Decision" ,"Next Parole Review Date" ,"Parole Review Status") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )', x)
     count += 1
     print count
