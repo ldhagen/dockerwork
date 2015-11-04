@@ -13,7 +13,8 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y build-essential libncurses-dev libreadline-dev sqlite3 && \
-  apt-get install -y git wget mercurial libssl-dev libsqlite3-dev openssl
+  apt-get install -y git wget mercurial libssl-dev libsqlite3-dev openssl mysql-client mysql-server && \
+  apt-get build-dep -y python-mysqldb
 
 # Add files.
 ADD ./convert.py /root/convert.py
@@ -36,10 +37,11 @@ RUN set -x \
     && pip install virtualenv --upgrade \
     && pip install openpyxl \
     && pip install pysqlite \
+    && pip install mysql-python \
     && rm -rf /root/cpython/.hg \
     && cd /root/ \
     && wget http://www.tdcj.state.tx.us/documents/High_Value_Data_Sets.xlsx \
     && python convert.py 
 
 # Define default command.
-CMD ["bash"]
+CMD ["service mysql start"]
