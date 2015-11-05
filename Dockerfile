@@ -42,7 +42,6 @@ RUN set -x \
     && rm -rf /root/cpython/.hg \
     && cd /root/ \
     && wget http://www.tdcj.state.tx.us/documents/High_Value_Data_Sets.xlsx \
-    && python convert.py \
     && service mysql start \
     && python convert_mysql.py 
 
