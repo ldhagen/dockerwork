@@ -6,7 +6,7 @@ def iter_rows(ws):
 
 wb = ox.load_workbook(filename='High_Value_Data_Sets.xlsx', use_iterators=True)
 ws = wb.get_active_sheet()
-conn = my.connect(host='localhost', user='root', passwd='ldhagen')
+conn = my.connect(host='localhost', user='root')
 c1 = conn.cursor()
 c1.execute(r'drop database if exists TxInmates;')
 c1.execute(r'create database TxInmates;')

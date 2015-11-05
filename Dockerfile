@@ -18,6 +18,7 @@ RUN \
 
 # Add files.
 ADD ./convert.py /root/convert.py
+ADD ./convert_mysql.py /root/convert_mysql.py
 
 # Set environment variables.
 ENV HOME /root
@@ -41,7 +42,9 @@ RUN set -x \
     && rm -rf /root/cpython/.hg \
     && cd /root/ \
     && wget http://www.tdcj.state.tx.us/documents/High_Value_Data_Sets.xlsx \
-    && python convert.py 
+    && python convert.py \
+    && service mysql start \
+    && python convert_mysql.py 
 
 # Define default command.
-CMD ["service mysql start"]
+CMD ["/bin/bash"]
