@@ -5,7 +5,7 @@ def iter_rows(ws):
         yield [cell.value for cell in row]
 
 wb = ox.load_workbook(filename='High_Value_Data_Sets.xlsx', use_iterators=True)
-ws = wb.get_active_sheet()
+ws = wb.active
 conn = my.connect(host='localhost', user='root')
 c1 = conn.cursor()
 c1.execute(r'drop database if exists TxInmates;')
