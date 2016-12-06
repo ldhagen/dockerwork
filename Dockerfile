@@ -27,7 +27,7 @@ ENV HOME /root
 # Define working directory.
 WORKDIR /root
 
-RUN hg clone https://hg.python.org/cpython -r v2.7.10
+RUN hg clone https://hg.python.org/cpython -r v2.7.12
 
 RUN set -x \
     && cd /root/cpython/ \
