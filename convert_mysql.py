@@ -4,7 +4,7 @@ def iter_rows(ws):
     for row in ws.iter_rows():
         yield [cell.value for cell in row]
 
-wb = ox.load_workbook(filename='High_Value_Data_Sets.xlsx', use_iterators=True)
+wb = ox.load_workbook(filename='High_Value_Data_Sets.xlsx', read_only=True)
 ws = wb.active
 conn = my.connect(host='localhost', user='root')
 c1 = conn.cursor()
@@ -22,5 +22,7 @@ for x in row_iter:
     c1.execute(r'insert into inmates (SID_NUMBER, TDCJ_NUMBER, NAME, CURRENT_FACILITY, GENDER, RACE, DOB, PROJECTED_RELEASE, MAXIMUM_SENTENCE_DATE, PAROLE_ELIGIBILITY_DATE, CASE_NUMBER, COUNTY, OFFENSE_CODE, OFFENSE, SENTENCE_DATE, OFFENSE_DATE, SENTENCE_YEARS, LAST_PAROLE_DECISION, NEXT_PAROLE_REVIEW_DATE, PAROLE_REVIEW_STATUS) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',(x))
     count += 1
     print count
+    if count == 146890:  #currently last record issue with null
+        break
 conn.commit()
 
