@@ -43,7 +43,7 @@ RUN set -x \
     && rm -rf /root/cpython/.hg \
     && cd /root/ \
     && wget http://www.tdcj.state.tx.us/documents/High_Value_Data_Sets.xlsx \
-    && wget http://www2.ed.gov/offices/OSFAP/defaultmanagement/peps300.xlsx 
+    && wget http://www2.ed.gov/offices/OSFAP/defaultmanagement/peps300.xlsx  \
     && service mysql start \
     && python convert_mysql.py \
     && python conv_peps300.py 
